@@ -1,0 +1,11 @@
+.Header {
+}
+
+.Header .Card {
+  box-shadow: 2px 1px 8px 0px #c1c1c1;
+}
+
+.Header svg {
+  max-width: 150px;
+  margin: 15px;
+}

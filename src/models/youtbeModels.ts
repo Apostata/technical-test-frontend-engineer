@@ -10,7 +10,7 @@ interface IYoutubeTumbnailItem {
 }
 
 interface IYoutubeSnippet {
-  publishedAt: Date;
+  publishedAt: string;
   channelId: string;
   title: string;
   description: string;
@@ -21,14 +21,14 @@ interface IYoutubeSnippet {
   };
   channelTitle: string;
   liveBroadcastContent: string;
-  publishTime: Date;
+  publishTime: string;
 }
 interface IYoutubeItem extends IYoutubeMetaData {
   id: {
     kind: string;
     videoId: string;
-    snippet: IYoutubeSnippet;
   };
+  snippet: IYoutubeSnippet;
 }
 
 interface IYoutubeResponseData extends IYoutubeMetaData {

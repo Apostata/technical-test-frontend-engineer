@@ -8,7 +8,8 @@ export const searchTmArtist = async (queryString: string) => {
     const resp = await axios.get<never, ITMResponse>(
       `${ticketMasterUrl}?size=1&keyword=${queryString}&apikey=${TM_API_KEY}`
     );
-    const attraction = resp.data ? resp.data._embedded.attractions[0] : {};
+    console.log(resp);
+    const attraction = resp.data ? resp.data._embedded.attractions[0] : null;
     return attraction;
   } catch (error) {
     console.log(error);

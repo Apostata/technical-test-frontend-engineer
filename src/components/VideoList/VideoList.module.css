@@ -1,0 +1,9 @@
+.VideoList {
+  opacity: 0;
+  transition: all 300ms ease-in 300ms;
+  overflow-x: hidden;
+}
+
+.VideoList.ativo {
+  opacity: 1;
+}

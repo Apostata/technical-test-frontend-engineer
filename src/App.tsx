@@ -1,13 +1,13 @@
 import React from "react";
 import { YouTubeProvider } from "./providers/youtube.provider";
 import { TMProvider } from "./providers/tocketMaster.provider";
-import FormPage from "./pages/FormPage";
+import HomePage from "./pages/HomePage";
 
 function App() {
   return (
     <YouTubeProvider>
       <TMProvider>
-        <FormPage />
+        <HomePage />
       </TMProvider>
     </YouTubeProvider>
   );

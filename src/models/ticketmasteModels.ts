@@ -8,7 +8,8 @@ interface ITMPageResp {
 interface ITMExternalLinks {
   [key: string]: [
     {
-      url: string;
+      url?: string;
+      id?: string;
     }
   ];
 }
@@ -35,11 +36,11 @@ interface ITMClassification {
     id: string;
     name: string;
   };
-  type: {
+  type?: {
     id: string;
     name: string;
   };
-  subType: {
+  subType?: {
     id: string;
     name: string;
   };
@@ -48,12 +49,13 @@ interface ITMClassification {
 
 interface ITMUpcomginEvents {
   _total: number;
-  "mfx-nl": number;
-  "mfx-no": number;
-  "mfx-es": number;
-  ticketmaster: number;
-  "mfx-cz": number;
-  "mfx-pl": number;
+  "mfx-nl"?: number;
+  "mfx-no"?: number;
+  "mfx-es"?: number;
+  ticketweb?: number;
+  ticketmaster?: number;
+  "mfx-cz"?: number;
+  "mfx-pl"?: number;
 }
 
 interface ITMAtraction {
@@ -61,9 +63,9 @@ interface ITMAtraction {
   type: string;
   id: string;
   test: false;
-  url: string;
+  url?: string;
   locale: string;
-  externalLinks: ITMExternalLinks;
+  externalLinks?: ITMExternalLinks;
   images: ITMImage[];
   classifications: ITMClassification[];
   upcomingEvents: ITMUpcomginEvents;
@@ -75,16 +77,16 @@ interface ITMAtraction {
 }
 
 interface ITMEmbeddedLinks {
-  first: {
+  first?: {
     href: string;
   };
   self: {
     href: string;
   };
-  next: {
+  next?: {
     href: string;
   };
-  last: {
+  last?: {
     href: string;
   };
 }

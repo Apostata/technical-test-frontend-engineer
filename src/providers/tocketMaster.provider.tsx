@@ -1,7 +1,7 @@
 import React from "react";
 import { createContext, useState, useContext, ReactChild } from "react";
 import { searchTmArtist } from "../services/ticketMaster.service";
-
+import { tikectMasterMock } from "../providers/tikcetMaster.mock";
 interface ContextValue {
   artist: ITMAtraction | null;
   getArtist: (queryString: string) => Promise<void>;
@@ -10,16 +10,21 @@ interface ContextValue {
 export const TMContext = createContext<ContextValue | null>(null);
 
 export const TMProvider = ({ children }: { children: ReactChild }) => {
-  const [artist, setArtist] = useState<ITMAtraction>({} as ITMAtraction);
+  const [artist, setArtist] = useState<ITMAtraction | null>(null);
 
   const getArtist = async (queryString: string): Promise<void> => {
+    clearArtist();
     try {
-      const resp = await searchTmArtist(queryString);
+      // const resp = await searchTmArtist(queryString);
+      const resp = await tikectMasterMock._embedded.attractions[0];
       setArtist(resp as ITMAtraction);
-      console.log(resp);
     } catch (error) {
       console.log(error);
     }
+  };
+
+  const clearArtist = () => {
+    setArtist(null);
   };
 
   return (
