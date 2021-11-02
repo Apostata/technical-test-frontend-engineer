@@ -67,3 +67,15 @@ Then send an email to **paulo.gontijo@rockcontent.com**, with:
 ## Questions
 
 If you have any questions or suggestions, send your questions directly to us paulo.gontijo@rockcontent.com or open an issue. 
+
+
+## Rene Souza
+### Sobre meu teste
+1. Não foquei muito em css só para deixar apresentavel
+2. O foco foi mais na arquitetura (Webpack e React)
+3. O projeto está em typescript
+4. as chaves de api tanto do youtube quanto to ticket master devem estar no arquivo `.env` na raiz. Não está incluso no git por segurança irei passar o arquivo via e-mail
+5. Os testes estão em testing library
+6. No `app.test.jsx` está um teste de integração
+   
+**Obrigado pela oportunidade!**
