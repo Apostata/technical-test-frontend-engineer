@@ -12,13 +12,8 @@ interface IVideoList {
 export default function VideoList({ videos, artist, ativo }: IVideoList) {
   return (
     <Container className={[Styles.VideoList, ativo && Styles.ativo].join(" ")}>
-      {videos.map((video, idx) => (
-        <VideoItem
-          key={video.id.videoId}
-          video={video}
-          artist={artist}
-          indice={idx + 1}
-        />
+      {videos.map((video) => (
+        <VideoItem key={video.id.videoId} video={video} artist={artist} />
       ))}
     </Container>
   );

@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Container } from "react-bootstrap";
-import { Header } from "../components/Header/Header";
+import Header from "../components/Header/Header";
 import SearchItem from "../components/SearchItem/SearchItem";
+import LoadingSppinner from "../components/UI/LoaodingSpinner";
 import VideoList from "../components/VideoList/VideoList";
 import { useTMContext } from "../providers/tocketMaster.provider";
 import { useYouTubeContext } from "../providers/youtube.provider";
@@ -11,15 +12,16 @@ export default function HomePaage() {
   const { artist, getArtist } = useTMContext();
   const [queryString, setQueryString] = useState<string | null>(null);
   const [loadedArtist, setLoadedArtist] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     if (queryString) {
       getVideos(queryString);
+      setLoading(true);
     }
   }, [queryString]);
 
   useEffect(() => {
-    console.log(videos);
     if (videos.length !== 0) {
       getArtist(queryString as string);
       setLoadedArtist(false);
@@ -27,9 +29,9 @@ export default function HomePaage() {
   }, [videos]);
 
   useEffect(() => {
-    console.log(artist);
     if (artist) {
       setLoadedArtist(true);
+      setLoading(false);
     }
   }, [artist]);
 
@@ -51,6 +53,7 @@ export default function HomePaage() {
         {artist && (
           <VideoList videos={videos} artist={artist} ativo={loadedArtist} />
         )}
+        {loading && <LoadingSppinner />}
       </Container>
     </>
   );

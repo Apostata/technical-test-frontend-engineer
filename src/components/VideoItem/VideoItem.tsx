@@ -1,14 +1,13 @@
-import React, { ReactChild, useEffect, useState, useMemo } from "react";
+import React, { ReactChild, useMemo } from "react";
 import { Col, Row, Image, Card } from "react-bootstrap";
 import { IsoToLocaleDate } from "../../helpers/isoToLocaleDate";
 import Styles from "./VideoItem.module.css";
 interface IVideoItemProps {
   video: IYoutubeItem;
   artist: ITMAtraction;
-  indice: number;
 }
 
-export default function VideoItem({ video, artist, indice }: IVideoItemProps) {
+export default function VideoItem({ video, artist }: IVideoItemProps) {
   return useMemo(
     () => (
       <article className={Styles.Item}>

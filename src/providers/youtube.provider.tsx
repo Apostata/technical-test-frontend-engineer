@@ -1,7 +1,7 @@
 import React from "react";
 import { createContext, useState, useContext, ReactChild } from "react";
 import { searchYoutubeVideos } from "../services/youtube.service";
-import { youtubeMock } from "./youtube.mock";
+import { youtubeMock } from "../mocks/youtube.mock";
 // criando contexto
 
 interface ContextValue {
@@ -18,8 +18,8 @@ export const YouTubeProvider = ({ children }: { children: ReactChild }) => {
   const getVideos = async (queryString: string): Promise<void> => {
     clearVideos();
     try {
-      // const resp = await searchYoutubeVideos(queryString);
-      const resp = await youtubeMock.items;
+      const resp = await searchYoutubeVideos(queryString);
+      // const resp = await youtubeMock.items;
       setVideos(resp ?? []);
     } catch (error) {
       console.log(error);

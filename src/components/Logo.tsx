@@ -1,7 +1,11 @@
 import React from "react";
 export default function Logo() {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 410.43 159.33">
+    <svg
+      data-testid="logo"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 410.43 159.33"
+    >
       <defs>
         <style>
           {".cls-1{fill:#677389;}.cls-2{fill:#3576ed;}.cls-3{fill:#2d3648;"}

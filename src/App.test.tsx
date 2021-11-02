@@ -2,23 +2,44 @@
  * @jest-environment jsdom
  */
 
-import React from "react";
+import React, { ComponentType, ReactElement } from "react";
 import { render, screen } from "@testing-library/react";
-import { ReactElement } from "react";
-import { MemoryRouter } from "react-router-dom";
 import App from "./App";
+import { YouTubeProvider } from "./providers/youtube.provider";
+import { TMProvider } from "./providers/tocketMaster.provider";
+import userEvent from "@testing-library/user-event";
 
-// const renderWithRouter = (ui: ReactElement, { route = "/" } = {}) => {
-//   window.history.pushState({}, "Home", route);
+const WhithAllProviders = ({ children }: { children: ReactElement }) => {
+  return (
+    <YouTubeProvider>
+      <TMProvider>{children}</TMProvider>
+    </YouTubeProvider>
+  );
+};
 
-//   return render(ui, { wrapper: MemoryRouter });
-// };
-
-test("Render Home", async () => {
-  //   renderWithRouter(<App />);
-  render(<App />);
-  const titulo = await screen.findByRole(`heading`, {
-    name: /Teste/i,
+describe("<App />", () => {
+  test("Should render Home page without error", () => {
+    render(<App />, {
+      wrapper: WhithAllProviders as ComponentType<{}>,
+    });
+    const searchInput = screen.getByRole("textbox");
+    const searchButton = screen.getByRole("button");
+    expect(searchInput).toBeInTheDocument();
+    expect(searchButton).toBeInTheDocument();
   });
-  expect(titulo).toBeInTheDocument();
+
+  test("[Integration] Should retrieve 20 itens on submit a search in Home page", async () => {
+    render(<App />, {
+      wrapper: WhithAllProviders as ComponentType<{}>,
+    });
+    const searchInput = screen.getByRole("textbox");
+    const searchButton = screen.getByRole("button");
+
+    userEvent.clear(searchInput);
+    userEvent.type(searchInput, "iron maiden");
+    userEvent.click(searchButton);
+
+    const videoItens = await screen.findAllByRole("img");
+    expect(videoItens.length).toBe(20);
+  });
 });
